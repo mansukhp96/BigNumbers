@@ -4,18 +4,17 @@ public interface BigNumber {
 
   int length();
 
-  long shiftLeft(int lShift);
+  void shiftLeft(int lShift);
 
-  long shiftRight(int rShift);
+  void shiftRight(int rShift);
 
-  long addDigit(int num) throws IllegalArgumentException;
+  void addDigit(int num);
 
-  long getDigitAt(int pos) throws IllegalArgumentException;
+  int getDigitAt(int pos);
 
-  long copy();
+  BigNumber copy();
 
   BigNumber add(BigNumber bigNum);
 
-  boolean cmp(BigNumber bNum1, BigNumber bNum2);
-
+  int compareTo(BigNumber Bn);
 }

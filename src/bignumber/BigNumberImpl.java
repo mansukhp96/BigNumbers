@@ -2,53 +2,46 @@ package bignumber;
 
 public class BigNumberImpl implements BigNumber {
 
-  private String data;
+  private NodeInterface head;
 
   public BigNumberImpl() {
-    this.data = "0";
+    head = new ElementNode(0, new EmptyNode());
   }
 
   public BigNumberImpl(String data) {
-    this.data = data;
+    for (int i = 0; i < data.length(); i++) {
+      new BigNumberImpl(Integer.parseInt(String.valueOf(data.charAt(i))));
+    }
+  }
+
+  private BigNumberImpl(int data) {
   }
 
   @Override
   public int length() {
-    return data.length();
+    return head.length();
   }
 
   @Override
-  public long shiftRight(int rShift) {
-    if (rShift > 0) {
-      int temp = Integer.parseInt(this.data);
-      return (long) (temp / Math.pow(10, rShift));
-    } else
-      return shiftLeft(Math.abs(rShift));
+  public void shiftRight(int rShift) {
   }
 
   @Override
-  public long shiftLeft(int lShift) {
-    if (lShift > 0) {
-      int temp = Integer.parseInt(this.data);
-      return (long) (temp * Math.pow(10, lShift));
-    } else {
-      return shiftRight(Math.abs(lShift));
-    }
+  public void shiftLeft(int lShift) {
   }
 
   @Override
-  public long addDigit(int num) throws IllegalArgumentException {
+  public void addDigit(int num) throws IllegalArgumentException {
+  }
+
+  @Override
+  public int getDigitAt(int pos) throws IllegalArgumentException {
     return 0;
   }
 
   @Override
-  public long getDigitAt(int pos) throws IllegalArgumentException {
-    return 0;
-  }
-
-  @Override
-  public long copy() {
-    return 0;
+  public BigNumber copy() {
+    return null;
   }
 
   @Override
@@ -57,7 +50,11 @@ public class BigNumberImpl implements BigNumber {
   }
 
   @Override
-  public boolean cmp(BigNumber Bn, BigNumber Bnq) {
-    return true;
+  public int compareTo(BigNumber Bn) {
+    return 0;
+  }
+
+  public static void main(String[] args) {
+    BigNumberImpl x = new BigNumberImpl("9876");
   }
 }
