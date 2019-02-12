@@ -1,47 +1,54 @@
 package bignumber;
 
-public class EmptyNode implements NodeInterface {
+public class EmptyNode implements BigNumber {
 
   @Override
-  public int count() {
+  public int length() {
     return 0;
   }
 
   @Override
-  public NodeInterface shiftLeft() {
+  public BigNumber shiftLeftHelp(int num) {
+    return new ElementNode(0, this);
+  }
+
+  @Override
+  public BigNumber shiftLeft(int lShift) {
     return this;
   }
 
   @Override
-  public NodeInterface shiftRight(int rShift) {
+  public BigNumber shiftRight(int rShift) {
     return this;
   }
 
   @Override
-  public NodeInterface addDigit(int num) {
+  public BigNumber addDigit(int num) {
     return null;
   }
 
   @Override
-  public int getDigitAt(int pos) {
+  public int getDigitAt(int pos) throws IllegalArgumentException {
+    throw new IllegalArgumentException("Illegal");
+  }
+
+  @Override
+  public BigNumber copy() {
+    return this;
+  }
+
+  @Override
+  public BigNumber add(BigNumber Bn) {
+    return null;
+  }
+
+  @Override
+  public int compareTo(BigNumber Bn) {
     return 0;
   }
 
   @Override
-  public NodeInterface copy() {
-
-    return null;
-  }
-
-  @Override
-  public NodeInterface add(NodeInterface Bn) {
-
-    return null;
-  }
-
-  @Override
-  public int compareTo(NodeInterface Bn) {
-
-    return 0;
+  public String toString() {
+    return "";
   }
 }

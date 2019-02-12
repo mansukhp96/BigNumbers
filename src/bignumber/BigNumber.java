@@ -19,7 +19,7 @@ public interface BigNumber {
    * @param lShift number of left shifts.
    */
 
-  void shiftLeft(int lShift);
+  BigNumber shiftLeft(int lShift);
 
   /**
    * This shifts the list to the right by the number of times passed as a parameter. if the
@@ -27,7 +27,7 @@ public interface BigNumber {
    *
    * @param rShift number of right shifts.
    */
-  void shiftRight(int rShift);
+  BigNumber shiftRight(int rShift);
 
   /**
    * Adds a digit to the passed input number.
@@ -36,7 +36,7 @@ public interface BigNumber {
    * @throws IllegalArgumentException if the number passed is not a single-digit non neg number.
    */
 
-  void addDigit(int num) throws IllegalArgumentException;
+  BigNumber addDigit(int num) throws IllegalArgumentException;
 
   /**
    * Returns the number at a given position passed as a parameter.
@@ -72,4 +72,6 @@ public interface BigNumber {
    */
 
   int compareTo(BigNumber bNum);
+
+  BigNumber shiftLeftHelp(int num);
 }
