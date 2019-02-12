@@ -10,28 +10,32 @@ public class ElementNode implements NodeInterface {
   }
 
   @Override
-  public int length() {
-    return 1 + this.rest.length();
+  public int count() {
+
+    return 1 + this.rest.count();
   }
 
   @Override
   public NodeInterface shiftRight(int rShift) {
+
     return null;
   }
 
   @Override
-  public NodeInterface shiftLeft(int lShift) {
-    return null;
+  public NodeInterface shiftLeft() {
+    return new ElementNode(0, this);
   }
 
   @Override
   public NodeInterface addDigit(int num) {
-    return null;
+//    int cary = 0;
+//    this =
+    return this;
   }
 
   @Override
-  public NodeInterface getDigitAt(int pos) {
-    return null;
+  public int getDigitAt(int pos) {
+    return 0;
   }
 
   @Override
@@ -41,12 +45,13 @@ public class ElementNode implements NodeInterface {
 
   @Override
   public NodeInterface add(NodeInterface Bn) {
+
     return null;
   }
 
   @Override
   public int compareTo(NodeInterface Bn) {
+
     return 0;
   }
-
 }

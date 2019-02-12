@@ -11,7 +11,7 @@ public class BigNumberImplTest {
 
   @Test
   public void testInit() {
-    num = new BigNumberImpl("19123");
+    num = new BigNumberImpl("");
     assertEquals("yo", num.length());
   }
 }

@@ -3,18 +3,18 @@ package bignumber;
 public class EmptyNode implements NodeInterface {
 
   @Override
-  public int length() {
+  public int count() {
     return 0;
   }
 
   @Override
-  public NodeInterface shiftLeft(int lShift) {
-    return null;
+  public NodeInterface shiftLeft() {
+    return this;
   }
 
   @Override
   public NodeInterface shiftRight(int rShift) {
-    return null;
+    return this;
   }
 
   @Override
@@ -23,22 +23,25 @@ public class EmptyNode implements NodeInterface {
   }
 
   @Override
-  public NodeInterface getDigitAt(int pos) {
-    return null;
+  public int getDigitAt(int pos) {
+    return 0;
   }
 
   @Override
   public NodeInterface copy() {
+
     return null;
   }
 
   @Override
   public NodeInterface add(NodeInterface Bn) {
+
     return null;
   }
 
   @Override
   public int compareTo(NodeInterface Bn) {
+
     return 0;
   }
 }

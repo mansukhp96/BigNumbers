@@ -2,15 +2,15 @@ package bignumber;
 
 public interface NodeInterface {
 
-  int length();
+  int count();
 
-  NodeInterface shiftLeft(int lShift);
+  NodeInterface shiftLeft();
 
   NodeInterface shiftRight(int rShift);
 
   NodeInterface addDigit(int num);
 
-  NodeInterface getDigitAt(int pos);
+  int getDigitAt(int pos);
 
   NodeInterface copy();
 

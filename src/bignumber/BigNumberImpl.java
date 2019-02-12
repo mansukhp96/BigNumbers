@@ -9,33 +9,35 @@ public class BigNumberImpl implements BigNumber {
   }
 
   public BigNumberImpl(String data) {
+    head = new ElementNode(0, new EmptyNode());
     for (int i = 0; i < data.length(); i++) {
-      new BigNumberImpl(Integer.parseInt(String.valueOf(data.charAt(i))));
+      this.head = head.shiftLeft();
+      this.head = head.addDigit(data.charAt(i));
     }
-  }
-
-  private BigNumberImpl(int data) {
   }
 
   @Override
   public int length() {
-    return head.length();
+    return head.count() - 1;
   }
 
   @Override
   public void shiftRight(int rShift) {
+    head = head.shiftRight(rShift);
   }
 
   @Override
   public void shiftLeft(int lShift) {
+    head = head.shiftLeft();
   }
 
   @Override
-  public void addDigit(int num) throws IllegalArgumentException {
+  public void addDigit(int num) {
+    head = head.addDigit(num);
   }
 
   @Override
-  public int getDigitAt(int pos) throws IllegalArgumentException {
+  public int getDigitAt(int pos) {
     return 0;
   }
 
@@ -52,9 +54,5 @@ public class BigNumberImpl implements BigNumber {
   @Override
   public int compareTo(BigNumber Bn) {
     return 0;
-  }
-
-  public static void main(String[] args) {
-    BigNumberImpl x = new BigNumberImpl("9876");
   }
 }
