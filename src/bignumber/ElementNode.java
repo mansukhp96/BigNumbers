@@ -37,8 +37,7 @@ public class ElementNode implements BigNumber {
     if (matcher.matches()) {
       return new ElementNode(0, new EmptyNode());
     }
-    BigNumber big = new BigNumberImpl(str);
-    return big;
+    return new BigNumberImpl(str);
   }
 
   @Override
@@ -79,25 +78,14 @@ public class ElementNode implements BigNumber {
       }
     } else
       throw new IllegalArgumentException("Digit required!");
-//      int temp = Integer.parseInt(String.valueOf(this.toString()));
-//      temp = temp + num;
-//      BigNumber Big = new BigNumberImpl("" + temp);
-//      System.out.println(temp);
-//      return Big;
-//  } else
-//          throw new
-//
-//  IllegalArgumentException("Digit");
   }
 
   @Override
   public int getDigitAt(int pos) throws IllegalArgumentException {
     if (pos > this.length() - 1 || pos < 0) {
-      throw new IllegalArgumentException("Invalid Position");
-    } else {
-      String str = new StringBuilder(this.toString()).reverse().toString();
-      return Integer.parseInt(String.valueOf(str.charAt(pos)));
+      throw new IllegalArgumentException("Invalid Position!");
     }
+    return Integer.parseInt(this.toString().substring(this.length() - 1 - pos, this.length() - pos));
   }
 
   @Override
@@ -115,7 +103,27 @@ public class ElementNode implements BigNumber {
 
   @Override
   public int compareTo(BigNumber bNum) {
-    return 0;
+    String s1 = this.toString();
+    s1 = s1.replaceFirst("^0+(?!$)", "");
+    String s2 = bNum.toString();
+    s2 = s2.replaceFirst("^0+(?!$)", "");
+    if (s1.length() > s2.length()) {
+      return 1;
+    } else if (s2.length() > s1.length()) {
+      return -1;
+    } else {
+      for (int i = 0; i < s1.length(); i++) {
+        int temp = Integer.parseInt(String.valueOf(s1.charAt(i))) - Integer.parseInt(String.valueOf(s2.charAt(i)));
+        System.out.println(Integer.parseInt(String.valueOf(s1.charAt(i))) + "s1");
+        System.out.println(Integer.parseInt(String.valueOf(s2.charAt(i))) + "s2");
+        if (temp > 0) {
+          return 1;
+        } else if (temp < 0) {
+          return -1;
+        }
+      }
+      return 0;
+    }
   }
 
   @Override

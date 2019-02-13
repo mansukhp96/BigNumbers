@@ -29,7 +29,7 @@ public class EmptyNode implements BigNumber {
 
   @Override
   public int getDigitAt(int pos) throws IllegalArgumentException {
-    throw new IllegalArgumentException("Illegal");
+    return -6;
   }
 
   @Override

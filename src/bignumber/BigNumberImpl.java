@@ -63,7 +63,7 @@ public class BigNumberImpl implements BigNumber {
   }
 
   @Override
-  public int getDigitAt(int pos) {
+  public int getDigitAt(int pos) throws IllegalArgumentException {
     return head.getDigitAt(pos);
   }
 
@@ -84,25 +84,6 @@ public class BigNumberImpl implements BigNumber {
 
   @Override
   public int compareTo(BigNumber bNum) {
-    String s1 = this.toString();
-    s1 = s1.replaceFirst("^0+(?!$)", "");
-    String s2 = bNum.toString();
-    s2 = s2.replaceFirst("^0+(?!$)", "");
-    if (s1.length() > s2.length()) {
-      return 1;
-    } else if (s2.length() > s1.length()) {
-      return -1;
-    } else {
-      for (int i = s1.length() - 1; i >= 0; i--) {
-        int temp = Integer.parseInt(String.valueOf(s1.charAt(i))) - Integer.parseInt(String.valueOf(s2.charAt(i)));
-        if (temp > 0) {
-          return 1;
-        } else if (temp < 0) {
-          return -1;
-        } else
-          return 0;
-      }
-    }
-    return 0;
+    return head.compareTo(bNum);
   }
 }
