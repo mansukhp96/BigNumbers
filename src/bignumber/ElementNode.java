@@ -19,7 +19,26 @@ public class ElementNode implements BigNumber {
 
   @Override
   public BigNumber shiftRight(int rShift) {
-    return null;
+    Pattern pattern = Pattern.compile("[0]+");
+    Matcher matcher = pattern.matcher(this.toString());
+    if (matcher.matches()) {
+      return new ElementNode(0, new EmptyNode());
+    }
+    return shiftRightHelp(rShift);
+  }
+
+  public BigNumber shiftRightHelp(int num) {
+    if (num >= this.length()) {
+      return new ElementNode(0, new EmptyNode());
+    }
+    String str = this.toString().substring(0, this.length() - num);
+    Pattern pattern = Pattern.compile("[0]+");
+    Matcher matcher = pattern.matcher(str);
+    if (matcher.matches()) {
+      return new ElementNode(0, new EmptyNode());
+    }
+    BigNumber big = new BigNumberImpl(str);
+    return big;
   }
 
   @Override
@@ -43,7 +62,32 @@ public class ElementNode implements BigNumber {
 
   @Override
   public BigNumber addDigit(int num) {
-    return this;
+    Pattern pattern = Pattern.compile("[0-9]");
+    Matcher matcher = pattern.matcher("" + num);
+    if (matcher.matches()) {
+      int sum = Integer.parseInt(String.valueOf(this.toString().charAt(this.length() - 1)));
+      sum = sum + num;
+      if (sum >= 10) {
+        int carry = 1;
+        int temp = Integer.parseInt(String.valueOf(this.toString().charAt(this.length() - 2)));
+        temp = temp + carry;
+        String fina = this.toString().substring(0, this.length() - 2);
+        return new BigNumberImpl(fina + temp + sum);
+      } else {
+        String fina = this.toString().substring(0, this.length() - 1);
+        return new BigNumberImpl(fina + sum);
+      }
+    } else
+      throw new IllegalArgumentException("Digit required!");
+//      int temp = Integer.parseInt(String.valueOf(this.toString()));
+//      temp = temp + num;
+//      BigNumber Big = new BigNumberImpl("" + temp);
+//      System.out.println(temp);
+//      return Big;
+//  } else
+//          throw new
+//
+//  IllegalArgumentException("Digit");
   }
 
   @Override
@@ -63,11 +107,14 @@ public class ElementNode implements BigNumber {
 
   @Override
   public BigNumber add(BigNumber Bn) {
-    return null;
+    int temp = Integer.parseInt(String.valueOf(this.toString()));
+    temp = temp + Integer.parseInt(String.valueOf(Bn.toString()));
+    BigNumber Big = new BigNumberImpl("" + temp);
+    return Big;
   }
 
   @Override
-  public int compareTo(BigNumber Bn) {
+  public int compareTo(BigNumber bNum) {
     return 0;
   }
 

@@ -32,28 +32,34 @@ public class BigNumberImpl implements BigNumber {
   }
 
   @Override
-  public BigNumber shiftLeftHelp(int num) {
-    return head.shiftLeftHelp(num);
-  }
-
-  @Override
   public int length() {
     return head.length();
   }
 
   @Override
   public BigNumber shiftRight(int rShift) {
-    return null;
+    if (rShift < 0) {
+      return shiftLeft(Math.abs(rShift));
+    }
+    return head.shiftRight(rShift);
   }
 
   @Override
   public BigNumber shiftLeft(int lShift) {
+    if (lShift < 0) {
+      return shiftRight(Math.abs(lShift));
+    }
     return head.shiftLeft(lShift);
   }
 
   @Override
+  public BigNumber shiftLeftHelp(int num) {
+    return head.shiftLeftHelp(num);
+  }
+
+  @Override
   public BigNumber addDigit(int num) {
-    return null;
+    return head.addDigit(num);
   }
 
   @Override
@@ -68,12 +74,7 @@ public class BigNumberImpl implements BigNumber {
 
   @Override
   public BigNumber add(BigNumber Bn) {
-    return null;
-  }
-
-  @Override
-  public int compareTo(BigNumber Bn) {
-    return 0;
+    return head.add(Bn);
   }
 
   @Override
@@ -81,12 +82,27 @@ public class BigNumberImpl implements BigNumber {
     return head.toString();
   }
 
-  public static void main(String[] args) {
-    BigNumberImpl b = new BigNumberImpl("01");
-    System.out.println(b.toString());
-    System.out.println(b.length());
-    //System.out.println(b.getDigitAt(10));
-    //System.out.println(b.copy().toString());
-    System.out.println(b.shiftLeft(3));
+  @Override
+  public int compareTo(BigNumber bNum) {
+    String s1 = this.toString();
+    s1 = s1.replaceFirst("^0+(?!$)", "");
+    String s2 = bNum.toString();
+    s2 = s2.replaceFirst("^0+(?!$)", "");
+    if (s1.length() > s2.length()) {
+      return 1;
+    } else if (s2.length() > s1.length()) {
+      return -1;
+    } else {
+      for (int i = s1.length() - 1; i >= 0; i--) {
+        int temp = Integer.parseInt(String.valueOf(s1.charAt(i))) - Integer.parseInt(String.valueOf(s2.charAt(i)));
+        if (temp > 0) {
+          return 1;
+        } else if (temp < 0) {
+          return -1;
+        } else
+          return 0;
+      }
+    }
+    return 0;
   }
 }
