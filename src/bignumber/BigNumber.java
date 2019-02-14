@@ -1,8 +1,8 @@
 package bignumber;
 
 /**
- * This interface represents a BigNumber list. It represents the various operations that can be
- * done.
+ * This interface represents a BigNumber list. It represents the various operations that can be done
+ * on it.
  */
 public interface BigNumber {
   /**
@@ -30,22 +30,33 @@ public interface BigNumber {
   BigNumber shiftRight(int rShift);
 
   /**
+   * This method is a helper method for shiftLeft.
+   *
+   * @param num is the number of shifts that are to be done on the number.
+   * @return to the shiftLeft method.
+   */
+
+  BigNumber shiftLeftHelp(int num);
+
+  /**
    * Adds a digit to the passed input number.
    *
-   * @param num is thhe number to be added to the input number.
+   * @param digit is thhe number to be added to the input number.
+   * @return the new list with the resulted output of type BigNumber.
    * @throws IllegalArgumentException if the number passed is not a single-digit non neg number.
    */
 
-  BigNumber addDigit(int num) throws IllegalArgumentException;
+  BigNumber addDigit(int digit) throws IllegalArgumentException;
 
   /**
    * Returns the number at a given position passed as a parameter.
    *
-   * @param pos is the position of the digit that has to be returned
+   * @param pos is the position of the digit that has to be returned.
    * @return the digit at the passed position.
+   * @throws IllegalArgumentException if the position entered is more than the input length.
    */
 
-  int getDigitAt(int pos);
+  int getDigitAt(int pos) throws IllegalArgumentException;
 
   /**
    * Makes a copy of the number list input.
@@ -58,20 +69,18 @@ public interface BigNumber {
   /**
    * Takes in another input number list and adds both the lists.
    *
-   * @param bNum another number list.
+   * @param anotherList another number list.
    * @return new list that is the sum of the two lists
    */
 
-  BigNumber add(BigNumber bNum);
+  BigNumber add(BigNumber anotherList);
 
   /**
-   * Compares two BigNumber objects.
+   * Compares two BigNumber lists.
    *
-   * @param bNum another list that has to be compared.
+   * @param anotherList another list that has to be compared.
    * @return if the new list if greater than, lesser than or equal to the list.
    */
 
-  int compareTo(BigNumber bNum);
-
-  BigNumber shiftLeftHelp(int num);
+  int compareTo(BigNumber anotherList);
 }
